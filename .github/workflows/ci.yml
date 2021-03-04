@@ -1,0 +1,14 @@
+# this is the configuration for how this workflow ought to behave
+
+name: Testing # workflow name
+on: push # when the workflow should run. we wish to perform the tests every time someone pushes to the repository
+
+jobs: # which jobs should be run at every push
+  test_project: # this is the only job. Every job must define tho components
+    runs-on: ubuntu-latest # which of GitHub's virtual machines we would like our code to be tun on
+    steps: # provides the actions that should occur when this job is run
+    - uses: actions/checkout@v2 # which GitHub action we wish to use
+    - name: Run Django unit tests # it allows us to provide a description of the action we're taking
+      run:  | # we type the commands we wish to run on GitHub's server
+        pip install --user django
+        python manage.py test
